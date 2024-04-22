@@ -1,3 +1,10 @@
+/**
+ * 
+ * @author KevinPozo
+ * Title: Inversion de Dependencia
+ * 
+ * 
+ * */
 package InterfaceDibujo;
 
 public interface InterfaceDibujo {
