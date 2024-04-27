@@ -1,3 +1,10 @@
+/**
+ * 
+ * @author KevinPozo
+ * Title: Inversión de Dependencia y Responsabilidad Única
+ * 
+ * 
+ * */
 package Game;
 
 import java.awt.Color;

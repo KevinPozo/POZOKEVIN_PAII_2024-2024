@@ -1,3 +1,10 @@
+/**
+ * 
+ * @author KevinPozo
+ * Title: Inversión de Dependencia y Responsabilidad Única
+ * 
+ * 
+ * */
 package Game;
 
 import java.awt.Color;
@@ -43,30 +50,30 @@ public class Hero implements IDrawable, IMovable, IShootable, IDieable, IUsernam
         Polygon triangle = new Polygon(xPoints, yPoints, 3);
         g.fillPolygon(triangle);
         
-        // Establecer una nueva fuente
-        Font font = new Font("Comic Sans MS", Font.BOLD, 16); // Cambiar la fuente, el tamaño y el estilo según tus preferencias
+        Font font = new Font("Comic Sans MS", Font.BOLD, 16);
         g.setFont(font);
 
-        // Dibujar el nombre de usuario
         g.drawString("Player: " + getUsername(), 10, 20);
         
-        // Dibujar el puntaje
         g.drawString("Score: " + getScore(), 10, 40);
         
-        // Dibujar la barra de vida
-        int barWidth = 100; // Ancho de la barra de vida
-        int barHeight = 10; // Altura de la barra de vida
-        int barX = 10; // Posición X de la barra de vida
-        int barY = 60; // Posición Y de la barra de vida
-        double healthPercentage = (double) currentHealth / maxHealth; // Porcentaje de vida actual
+        int barWidth = 100; 
+        int barHeight = 10; 
+        int barX = 10; 
+        int barY = 60; 
+        double healthPercentage = (double) currentHealth / maxHealth; 
         
-        // Dibujar el contorno de la barra de vida
         g.setColor(Color.BLACK);
         g.drawRect(barX, barY, barWidth, barHeight);
         
-        // Dibujar el interior de la barra de vida
         g.setColor(Color.RED);
         g.fillRect(barX, barY, (int) (barWidth * healthPercentage), barHeight);
+        g.setColor(Color.WHITE);
+        g.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
+        int textWidth = g.getFontMetrics().stringWidth("Life: " + getCurrentHealth());
+        int textX = barX + (barWidth - textWidth) / 2;
+        int textY = barY + barHeight + 15;
+        g.drawString("Life: " + getCurrentHealth(), textX, textY);
     }
 
 
@@ -151,6 +158,7 @@ public class Hero implements IDrawable, IMovable, IShootable, IDieable, IUsernam
             currentHealth = 0;
         }
     }
+
 
     @Override
     public void increaseHealth(int amount) {

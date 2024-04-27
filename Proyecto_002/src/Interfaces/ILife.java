@@ -1,6 +1,13 @@
+/**
+ * 
+ * @author KevinPozo
+ * Title: Inversión de Dependencia y Responsabilidad Única
+ * 
+ * 
+ * */
 package Interfaces;
 
-public interface ILife {
+public interface ILife extends IDrawable, IMovable{
     int getMaxHealth(); 
     int getCurrentHealth(); 
     void decreaseHealth(int amount); 

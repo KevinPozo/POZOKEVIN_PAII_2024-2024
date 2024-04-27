@@ -1,3 +1,10 @@
+/**
+ * 
+ * @author KevinPozo
+ * Title: Inversión de Dependencia y Responsabilidad Única
+ * 
+ * 
+ * */
 package Game;
 
 import java.awt.Color;
@@ -24,14 +31,12 @@ public class Enemy implements IDrawable, IMovable, IDieable, IScore {
 
     @Override
     public void draw(Graphics g) {
-        // Dibujar el enemigo en la posición actual
         g.setColor(Color.GREEN);
         g.fillRect(x, y, width, height);
     }
 
     @Override
     public void move(int dx, int dy) {
-        // Mover el enemigo en la dirección especificada
         this.x += dx;
         this.y += dy;
     }
@@ -64,7 +69,6 @@ public class Enemy implements IDrawable, IMovable, IDieable, IScore {
 
 	@Override
 	public int getScore() {
-		// TODO Auto-generated method stub
 		return score;
 	}
 

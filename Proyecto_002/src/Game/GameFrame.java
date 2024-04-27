@@ -1,3 +1,10 @@
+/**
+ * 
+ * @author KevinPozo
+ * Title: Inversión de Dependencia y Responsabilidad Única
+ * 
+ * 
+ * */
 package Game;
 
 import javax.swing.JFrame;
@@ -28,7 +35,7 @@ public class GameFrame extends JFrame implements KeyListener {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 setBackground(Color.BLACK);
-                gameContainer.draw(g);
+                gameContainer.render(g);
             }
         };
         gamePanel.setPreferredSize(new Dimension(800, 600));
