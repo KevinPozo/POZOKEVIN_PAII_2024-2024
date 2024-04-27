@@ -1,7 +1,7 @@
 /**
  * 
  * @author KevinPozo
- * Title: Inversión de Dependencia y Responsabilidad Única
+ * Title: Inversión de Dependencia y Responsabilidad Única.
  * 
  * 
  * */
