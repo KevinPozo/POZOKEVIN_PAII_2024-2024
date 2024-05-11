@@ -13,24 +13,24 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import Controller.StudentDAO;
-import model.Student;
+import Controller.SubjectDAO;
+import model.Subject;
 
-public class StudentPanel extends JFrame {
+public class SubjectPanel extends JFrame {
 
     private static final long serialVersionUID = 1L;
-    private final StudentDAO studentDAO;
+    private final SubjectDAO subjectDAO;
 
-    public StudentPanel() {
-        setTitle("Student");
+    public SubjectPanel() {
+        setTitle("Subject");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(500, 100);
         setLocationRelativeTo(null);
 
-        studentDAO = new StudentDAO(); 
+        subjectDAO = new SubjectDAO(); 
 
         JPanel panel = new JPanel();
-        panel.setBackground(Color.CYAN);
+        panel.setBackground(Color.green);
         panel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
 
         JButton btnCreate = new JButton("Create");
@@ -57,103 +57,103 @@ public class StudentPanel extends JFrame {
         btnCreate.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                createStudent();
+                createSubject();
             }
         });
 
         btnRead.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                readStudent();
+                readSubject();
             }
         });
 
         btnUpdate.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                updateStudent();
+                updateSubject();
             }
         });
 
         btnDelete.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                deleteStudent();
+                deleteSubject();
             }
         });
 
         add(panel);
     }
 
-    private void createStudent() {
+    private void createSubject() {
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(3, 2)); 
         panel.add(new JLabel("Name:"));
         JTextField nameField = new JTextField(10);
         panel.add(nameField);
         
-        panel.add(new JLabel("Last Name:"));
-        JTextField lastNameField = new JTextField(10);
-        panel.add(lastNameField);
+        panel.add(new JLabel("Description:"));
+        JTextField descriptionField = new JTextField(10);
+        panel.add(descriptionField);
         
-        panel.add(new JLabel("Age:"));
-        JTextField ageField = new JTextField(10);
-        panel.add(ageField);
+        panel.add(new JLabel("Level:"));
+        JTextField levelField = new JTextField(10);
+        panel.add(levelField);
         
         int result = JOptionPane.showConfirmDialog(
                 this,
                 panel,
-                "Create Student",
+                "Create Subject",
                 JOptionPane.OK_CANCEL_OPTION,
                 JOptionPane.PLAIN_MESSAGE);
         
         if (result == JOptionPane.OK_OPTION) {
             String name = nameField.getText();
-            String lastName = lastNameField.getText();
-            int age = Integer.parseInt(ageField.getText());
-            Student student = new Student();
-            student.setName(name);
-            student.setLastName(lastName);
-            student.setAge(age);
-            studentDAO.saveStudent(student);
+            String description = descriptionField.getText();
+            int level = Integer.parseInt(levelField.getText());
+            Subject subject = new Subject();
+            subject.setName(name);
+            subject.setDescription(description);
+            subject.setLevel(level);
+            subjectDAO.saveSubject(subject);
         }
     }
 
 
 
-    private void readStudent() {
-        String input = JOptionPane.showInputDialog(this, "Insert Id of a Student:");
+    private void readSubject() {
+        String input = JOptionPane.showInputDialog(this, "Insert Id of a Subject:");
         
         if (input != null && !input.isEmpty()) {
             try {
-                int studentId = Integer.parseInt(input);
-                Student student = studentDAO.getStudent(studentId);
+                int subjectId = Integer.parseInt(input);
+                Subject subject = subjectDAO.getSubject(subjectId);
 
-                if (student != null) {
+                if (subject != null) {
                     JPanel panel = new JPanel();
                     panel.setLayout(new GridLayout(4, 1)); 
 
-                    panel.add(new JLabel("ID: " + student.getId()));
-                    panel.add(new JLabel("Name: " + student.getName()));
-                    panel.add(new JLabel("Last Name: " + student.getLastName()));
-                    panel.add(new JLabel("Age: " + student.getAge()));
+                    panel.add(new JLabel("ID: " + subject.getId()));
+                    panel.add(new JLabel("Name: " + subject.getName()));
+                    panel.add(new JLabel("Description: " + subject.getDescription()));
+                    panel.add(new JLabel("Level: " + subject.getLevel()));
 
                     JOptionPane.showMessageDialog(
                             this,
                             panel,
-                            "Details of Student",
+                            "Details of a Subject",
                             JOptionPane.INFORMATION_MESSAGE);
                 } else {
                     JOptionPane.showMessageDialog(
                             this,
-                            "No student was found with the provided ID.",
+                            "No subject was found with the provided ID.",
                             "Error",
                             JOptionPane.ERROR_MESSAGE);
                 }
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(
                         this,
-                        "Student ID must be an integer.",
+                        "Subject ID must be an integer.",
                         "Error",
                         JOptionPane.ERROR_MESSAGE);
             }
@@ -161,84 +161,84 @@ public class StudentPanel extends JFrame {
     }
 
 
-    private void updateStudent() {
-        String input = JOptionPane.showInputDialog(this, "Insert ID of the student to update:");
+    private void updateSubject() {
+        String input = JOptionPane.showInputDialog(this, "Insert ID of the Subject to update:");
 
         if (input != null && !input.isEmpty()) {
             try {
-                int studentId = Integer.parseInt(input);
+                int subjectId = Integer.parseInt(input);
 
-                Student studentToUpdate = studentDAO.getStudent(studentId);
+                Subject subjectToUpdate = subjectDAO.getSubject(subjectId);
 
-                if (studentToUpdate != null) {
+                if (subjectToUpdate != null) {
                     String newName = JOptionPane.showInputDialog(this, "Name:");
-                    String newLastName = JOptionPane.showInputDialog(this, "Last Name:");
-                    String newAgeInput = JOptionPane.showInputDialog(this, "Age:");
+                    String newDescription = JOptionPane.showInputDialog(this, "Description:");
+                    String newLevelInput = JOptionPane.showInputDialog(this, "Level:");
 
-                    if (newAgeInput != null && !newAgeInput.isEmpty()) {
-                        int newAge = Integer.parseInt(newAgeInput);
+                    if (newLevelInput != null && !newLevelInput.isEmpty()) {
+                        int newLevel = Integer.parseInt(newLevelInput);
 
-                        studentToUpdate.setName(newName);
-                        studentToUpdate.setLastName(newLastName);
-                        studentToUpdate.setAge(newAge);
+                        subjectToUpdate.setName(newName);
+                        subjectToUpdate.setDescription(newDescription);
+                        subjectToUpdate.setLevel(newLevel);
 
-                        studentDAO.updateStudent(studentToUpdate);
+                        subjectDAO.updateSubject(subjectToUpdate);
 
                         JOptionPane.showMessageDialog(
                                 this,
-                                "The student has been successfully updated.",
+                                "The Subject has been successfully updated.",
                                 "Success!",
                                 JOptionPane.INFORMATION_MESSAGE);
                     } else {
                         JOptionPane.showMessageDialog(
                                 this,
-                                "Please enter a new valid age.",
+                                "Please enter a new valid level.",
                                 "Error",
                                 JOptionPane.ERROR_MESSAGE);
                     }
                 } else {
                     JOptionPane.showMessageDialog(
                             this,
-                            "No student found with ID: " + studentId,
+                            "No subject found with ID: " + subjectId,
                             "Error",
                             JOptionPane.ERROR_MESSAGE);
                 }
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(
                         this,
-                        "Student ID and new age must be integers.",
+                        "Subject ID and new level must be integers.",
                         "Error",
                         JOptionPane.ERROR_MESSAGE);
             }
         }
     }
 
-    private void deleteStudent() {
-        String input = JOptionPane.showInputDialog(this, "Insert ID of the student to delete:");
+    private void deleteSubject() {
+        String input = JOptionPane.showInputDialog(this, "Insert ID of the Subject to delete:");
 
         if (input != null && !input.isEmpty()) {
             try {
-                int studentId = Integer.parseInt(input);
+                int subjectId = Integer.parseInt(input);
 
                 int confirm = JOptionPane.showConfirmDialog(
                         this,
-                        "Are you sure you want to delete student with ID " + studentId + "?",
+                        "Are you sure you want to delete Subject with ID " + subjectId + "?",
                         "Confirm Deletion",
                         JOptionPane.YES_NO_OPTION);
 
                 if (confirm == JOptionPane.YES_OPTION) {
-                    studentDAO.deleteStudent(studentId);
+                    subjectDAO.deleteSubject(subjectId);
 
                     JOptionPane.showMessageDialog(
                             this,
-                            "The student has been successfully deleted.",
+                            "The subject has been successfully deleted.",
                             "Success!",
                             JOptionPane.INFORMATION_MESSAGE);
                 }
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(
                         this,
-                        "Student ID must be an integer.",
+                        "Subject ID must be an integer.",
                         "Error",
                         JOptionPane.ERROR_MESSAGE);
             }

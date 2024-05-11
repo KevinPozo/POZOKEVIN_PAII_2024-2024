@@ -10,7 +10,6 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -20,7 +19,7 @@ public class Container extends JFrame {
     private JPanel contentPane;
 
     public Container() {
-        setTitle("App Base de Datos MySQL");
+        setTitle("App Institute");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(900, 100, 400, 600);
         
@@ -29,25 +28,22 @@ public class Container extends JFrame {
         contentPane.setBackground(Color.black);
         setContentPane(contentPane);
         
-        // Utilizar un BoxLayout con orientación vertical
         contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
         
-        // Agregar espacio vertical
         contentPane.add(Box.createVerticalGlue());
         
-        // Crear botones
         JButton btnStudent = new JButton("Student");
         JButton btnTeacher = new JButton("Teacher");
         JButton btnSchedule = new JButton("Schedule");
         JButton btnSubject = new JButton("Subject");
+        JButton btnExit = new JButton("Exit");
         
-        // Alinear los botones al centro
         btnStudent.setAlignmentX(Component.CENTER_ALIGNMENT);
         btnTeacher.setAlignmentX(Component.CENTER_ALIGNMENT);
         btnSchedule.setAlignmentX(Component.CENTER_ALIGNMENT);
         btnSubject.setAlignmentX(Component.CENTER_ALIGNMENT);
+        btnExit.setAlignmentX(Component.CENTER_ALIGNMENT);
         
-        // Agregar acciones a los botones
         btnStudent.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -60,25 +56,37 @@ public class Container extends JFrame {
         btnTeacher.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "Acción para el botón Teacher");
-            }
+            	TeacherPanel teacherWindow = new TeacherPanel();
+            	teacherWindow.setVisible(true);
+                setVisible(false);            
+                }
         });
         
         btnSchedule.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "Acción para el botón Schedule");
+            	SchedulePanel scheduleWindow = new SchedulePanel();
+            	scheduleWindow.setVisible(true);
+                setVisible(false);  
             }
         });
         
         btnSubject.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "Acción para el botón Subject");
+            	SubjectPanel subjectWindow = new SubjectPanel();
+            	subjectWindow.setVisible(true);
+                setVisible(false);   
             }
         });
         
-        // Agregar botones al panel
+        btnExit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+        
         contentPane.add(btnStudent);
         contentPane.add(Box.createRigidArea(new Dimension(0, 10))); 
         contentPane.add(btnTeacher);
@@ -86,8 +94,9 @@ public class Container extends JFrame {
         contentPane.add(btnSchedule);
         contentPane.add(Box.createRigidArea(new Dimension(0, 10))); 
         contentPane.add(btnSubject);
+        contentPane.add(Box.createRigidArea(new Dimension(0, 50))); 
+        contentPane.add(btnExit);
         
-        // Agregar espacio vertical
         contentPane.add(Box.createVerticalGlue());
     }
 
