@@ -1,3 +1,10 @@
+/**
+ * 
+ * @author KevinPozo
+ * Title: Hibernate e Inyección de Dependencia.
+ * 
+ * 
+ * */
 package model;
 
 import javax.persistence.Column;
@@ -67,11 +74,6 @@ public class Subject {
 
 	public void setLevel(int level) {
 		this.level = level;
-	}
-
-	@Override
-	public String toString() {
-		return "Subject [id:" + id + ", name:" + name + ", description:" + description + ", level:" + level + "]";
 	}
 
 }

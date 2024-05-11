@@ -1,3 +1,10 @@
+/**
+ * 
+ * @author KevinPozo
+ * Title: Hibernate e Inyección de Dependencia.
+ * 
+ * 
+ * */
 package model;
 
 import javax.persistence.Column;
@@ -13,7 +20,7 @@ import javax.persistence.Table;
 
 public class Student {
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	@Column(name = "name")

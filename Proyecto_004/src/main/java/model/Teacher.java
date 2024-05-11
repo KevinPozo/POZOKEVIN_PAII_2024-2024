@@ -1,3 +1,10 @@
+/**
+ * 
+ * @author KevinPozo
+ * Title: Hibernate e Inyección de Dependencia.
+ * 
+ * 
+ * */
 package model;
 
 import javax.persistence.Column;
@@ -66,11 +73,6 @@ public class Teacher {
 
 	public void setAge(int age) {
 		this.age = age;
-	}
-
-	@Override
-	public String toString() {
-		return "Teacher [id:" + id + ", name:" + name + ", lastName:" + lastName + ", age:" + age + "]";
 	}
 
 }

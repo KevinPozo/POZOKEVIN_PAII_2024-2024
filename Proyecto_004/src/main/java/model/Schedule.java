@@ -1,4 +1,12 @@
+/**
+ * 
+ * @author KevinPozo
+ * Title: Hibernate e Inyección de Dependencia.
+ * 
+ * 
+ * */
 package model;
+
 import java.sql.Time;
 
 import javax.persistence.Column;
@@ -14,7 +22,7 @@ public class Schedule {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	@Column(name = "idSubject")
 	private int idSubject;
 
@@ -23,21 +31,21 @@ public class Schedule {
 
 	@Column(name = "idTeacher")
 	private int idTeacher;
-	
+
 	@Column(name = "timeStart")
 	private Time timeStart;
-	
+
 	@Column(name = "timeEnd")
 	private Time timeEnd;
-	
+
 	@Column(name = "day")
 	private String day;
-	
+
 	public Schedule() {
-		
+
 	}
 
-	public Schedule(int id,int idSubject, int idStudent, int idTeacher, Time timeStart, Time timeEnd, String day) {
+	public Schedule(int id, int idSubject, int idStudent, int idTeacher, Time timeStart, Time timeEnd, String day) {
 		super();
 		this.id = id;
 		this.idSubject = idSubject;
@@ -104,11 +112,4 @@ public class Schedule {
 		this.day = day;
 	}
 
-	@Override
-	public String toString() {
-		return "Schedule [idSubject:" + idSubject + ", idStudent:" + idStudent + ", idTeacher:" + idTeacher
-				+ ", timeStart:" + timeStart + ", timeEnd:" + timeEnd + ", day:" + day + "]";
-	}
-	
-	
 }
